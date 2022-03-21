@@ -24,6 +24,12 @@ Spring Cloud Data Flow CDC Debezium 구축을 위한 방법입니다.
 * app.cdc-debezium.cdc.offset.flush-interval=6000
 * app.cdc-debezium.cdc.offset.storage=file
 
+### Snapshot
+
+* app.cdc-debezium.cdc.config.snapshot.locking.mode
+* app.cdc-debezium.cdc.config.snapshot.mode
+
+
 #### Offset Storage Options for Kafka
 [Stack overflow](https://stackoverflow.com/questions/70620417/why-debezium-connector-cant-connect-to-a-sasl-activated-broker)
 
@@ -54,4 +60,30 @@ Spring Cloud Data Flow CDC Debezium 구축을 위한 방법입니다.
 
 * deployer.cdc-debezium.memory=2048
 * deployer.cdc-debezium.kubernetes.environment-variables=JAVA_OPTIONS=-Xmx1024m
+
+
+
+## Troubleshooting
+
+####  org.apache.kafka.common.errors.TimeoutException: Expiring 4 record(s) for xxx ms has passed since batch creation
+
+TBD 
+
+
+[Stack overflow](https://stackoverflow.com/questions/53223129/kafka-producer-timeoutexception)
+
+[Stack overflow](https://stackoverflow.com/questions/49868753/debezium-flush-timeout-and-outofmemoryerror-errors-with-mysql)
+
+* app.cdc-debezium.cdc.config.request.timeout.ms
+
+* app.cdc-debezium.cdc.config.max.request.size
+
+#### Snapshot 취득 시 다음 설정을 통해 global read lock 
+
+snapshot.mode = never → snapshot을 취득하지 않고, binlog를 처음부터 읽는다. binlog가 DB 생성 시점부터 모두 남아있을 경우에만 사용 가능
+snapshot.locking.mode = none → snapshot 취득 시 lock을 사용하지 않는다. snapshot 취득 도중에 DDL이 발생하면 문제가 발생하므로 해당 과정에 DDL이 없어야 한다. 
+
+* app.cdc-debezium.cdc.config.snapshot.locking.mode=none
+* app.cdc-debezium.cdc.config.snapshot.mode=never
+
 
