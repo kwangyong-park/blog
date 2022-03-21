@@ -2,7 +2,7 @@
 
 Spring Cloud Data Flow CDC Debezium 구축을 위한 방법입니다.
 
-## config 
+## Config 
 
 ### Database Connection Options
 * app.cdc-debezium.cdc.config.database.hostname
