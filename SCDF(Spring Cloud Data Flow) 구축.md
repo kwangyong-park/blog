@@ -1,4 +1,4 @@
-# [TBD] SCDF(Spring Cloud Data Flow) 구축 
+# [WIP] SCDF(Spring Cloud Data Flow) 구축 
 
 Spring Cloud Data Flow Helm을 통한 구축을 위한 방법입니다.
 
