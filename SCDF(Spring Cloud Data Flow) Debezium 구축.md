@@ -56,7 +56,7 @@ Spring Cloud Data Flow CDC Debezium 구축을 위한 방법입니다.
 * deployer.cdc-debezium.kubernetes.volumes=[{name: '', persistentVolumeClaim: { claimName: '', readOnly: 'false' }}]
 
 ### Pod Affinity 
-[](https://kubernetes.io/ko/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/)
+[Kubernetes Bible](https://kubernetes.io/ko/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/)
 
 affinity는 Pod를 특정 Node에 배포되도록 하는 정책이다. DB ACL처럼 작업이 필요할때 사용하면 유용하다.
 
