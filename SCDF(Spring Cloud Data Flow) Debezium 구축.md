@@ -2,7 +2,7 @@
 
 Spring Cloud Data Flow CDC Debezium 구축을 위한 방법입니다.
 
-## Config 
+## Properties 
 
 ### Database Connection Options
 * app.cdc-debezium.cdc.config.database.hostname
@@ -54,6 +54,14 @@ Spring Cloud Data Flow CDC Debezium 구축을 위한 방법입니다.
 * app.cdc-debezium.cdc.schema=true
 * deployer.cdc-debezium.kubernetes.volume-mounts=[{name: '', mountPath: '/mnt'}]
 * deployer.cdc-debezium.kubernetes.volumes=[{name: '', persistentVolumeClaim: { claimName: '', readOnly: 'false' }}]
+
+### Pod Affinity 
+[](https://kubernetes.io/ko/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/)
+
+affinity는 Pod를 특정 Node에 배포되도록 하는 정책이다. DB ACL처럼 작업이 필요할때 사용하면 유용하다.
+
+* deployer.cdc-debezium.kubernetes.node-affinity={requiredDuringSchedulingIgnoredDuringExecution: { nodeSelectorTerms: [ { matchExpressions: [ { key: 'scdf-pod', operator: 'In', values: [ 'allow']}]}]}}
+
 
 ### Application Memory Options
 [Spring Cloud Data Flow Reference](https://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/#_environment_variables)
